@@ -10,10 +10,10 @@ router.get('/', function (req, res) {
 })
 
 router.get("/shop", isLoggedIn, async function (req, res) {
-    let product = await productModel.find();
+    let products = await productModel.find();
     let success = req.flash("success");
-    res.render("shop", { product, success });
-})
+    res.render("shop", { products, success });
+});
 
 router.get("/cart", isLoggedIn, async function (req, res) {
     let user = await userModel.findOne({ email: req.user.email }).populate("cart");
