@@ -1,46 +1,65 @@
 <%- include('./partials/header') %>
 
-    <% if(error.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= error %>
-            </span>
+<div class="min-h-screen bg-neutral-100 flex items-center justify-center px-6">
+    <% if(error.length > 0){ %>
+        <div class="absolute top-6 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg">
+            <%= error %>
         </div>
-        <% } %>
-            <div class="w-full h-screen flex px-20">
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h3 class="text-4xl">welcome to <span class="text-blue-400 font-semibold">Scatch</span></h3>
-                        <h4 class="text-2xl mb-5">create your account</h4>
-                        <form autocomplete="off" action="/users/register" method="post">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="text" placeholder="Full Name" name="fullname">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="email" placeholder="Email" name="email">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="password" placeholder="Password" name="password">
-                            <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
-                                value="Create My Account">
-                        </form>
-                    </div>
-                </div>
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h4 class="text-2xl capitalize mb-5">login your account</h4>
-                        <form autocomplete="off" action="/users/login" method="post">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="email" placeholder="Email" name="email">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="password" placeholder="Password" name="password">
-                            <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
-                                value="Login">
-                        </form>
-                    </div>
-                </div>
+    <% } %>
+    <div class="w-full max-w-6xl bg-white shadow-2xl rounded-3xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+        <div class="flex flex-col justify-center p-12 bg-gradient-to-br from-black to-neutral-800 text-white">
+            <h1 class="text-5xl font-bold mb-4 tracking-wide">
+                Cartify
+            </h1>
+            <p class="text-lg text-neutral-300 mb-6">
+                Elevate your everyday carry with premium crafted bags.
+            </p>
+            <div class="space-y-3 text-sm text-neutral-400">
+                <p>✦ Luxury Handbags</p>
+                <p>✦ Modern Backpacks</p>
+                <p>✦ Travel & Office Collection</p>
             </div>
-            <%- include('./partials/footer') %>
+        </div>
+        <div class="p-12 bg-white">
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-neutral-800 mb-6">
+                    Create Account
+                </h2>
+                <form action="/users/register" method="post" class="space-y-4">
+                    <input 
+                        class="w-full px-4 py-3 bg-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                        type="text" placeholder="Full Name" name="fullname" required>
+                    <input 
+                        class="w-full px-4 py-3 bg-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                        type="email" placeholder="Email" name="email" required>
+                    <input 
+                        class="w-full px-4 py-3 bg-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                        type="password" placeholder="Password" name="password" required>
+                    <button 
+                        class="w-full bg-black hover:bg-neutral-900 text-white py-3 rounded-xl font-medium transition duration-300">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+            <div>
+                <h2 class="text-2xl font-semibold text-neutral-800 mb-6">
+                    Login to Your Account
+                </h2>
+                <form action="/users/login" method="post" class="space-y-4">
+                    <input 
+                        class="w-full px-4 py-3 bg-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                        type="email" placeholder="Email" name="email" required>
+                    <input 
+                        class="w-full px-4 py-3 bg-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                        type="password" placeholder="Password" name="password" required>
+                    <button 
+                        class="w-full bg-amber-500 hover:bg-amber-600 text-black py-3 rounded-xl font-semibold transition duration-300">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

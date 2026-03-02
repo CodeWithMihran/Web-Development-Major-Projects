@@ -16,11 +16,20 @@ router.get("/shop", isLoggedIn, async function (req, res) {
 });
 
 router.get("/cart", isLoggedIn, async function (req, res) {
-    let user = await userModel.findOne({ email: req.user.email }).populate("cart");
+    let user = await userModel
+        .findOne({ email: req.user.email })
+        .populate("cart");
 
-    const bill = (Number(user.cart[0].price+20)-Number(user.cart[0].discount));
-    res.render("cart", { user, bill });
-})
+    let cartTotal = 0;
+
+    user.cart.forEach(item => {
+        cartTotal += Number(item.price) - Number(item.discount);
+    });
+
+    cartTotal += 20;
+
+    res.render("cart", { user, cartTotal });
+});
 
 router.get("/addtocart/:productid", isLoggedIn, async function (req, res) {
     let user = await userModel.findOne({ email: req.user.email });
@@ -30,8 +39,10 @@ router.get("/addtocart/:productid", isLoggedIn, async function (req, res) {
     res.redirect("/shop");
 });
 
-router.get("/logout", isLoggedIn, function (req, res) {
-    res.render("shop");
-})
+router.get("/logout", function(req, res) {
+    res.cookie("token", "");
+    req.flash("success", "Logged In successfully");
+    res.redirect("/");
+});
 
 module.exports = router;
